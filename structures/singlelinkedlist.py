@@ -1,5 +1,8 @@
 import structures.node as node
+from pprint import pprint
+import pdb
 
+"""<-tail->prev->---------<-next-<-head>"""
 class SingleLinkedList:
   """A single direction linked list"""
   def __init__(self):
@@ -17,10 +20,22 @@ class SingleLinkedList:
       self.tail.set_data(data)
       self.num += 1
     else:
-      temp = node.Node(data)
-      tail.set_next(temp)
-      temp.set_prev(tail)
-      self.tail = temp
+      temp = self.tail
+      self.tail = node.Node(data)
+      self.tail.set_prev(temp)
+      self.tail.set_next(None)
+      temp.set_next(self.tail)
+      self.num += 1
+
+  def get_size(self):
+    return self.num
+
+  def at_pos(self, index):
+    traverse = self.head
+    for i in range(index):
+      traverse = traverse.get_next()
+    # pprint(dir(traverse))
+    return traverse.get_data()
 
   def ret_hdata(self):
     return self.head.d

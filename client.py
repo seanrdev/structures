@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/use/bin/env python3
 import argparse
 import structures.singlelinkedlist as sll
 import structures.node
@@ -11,11 +11,20 @@ def retrieve_args():
   args = parser.parse_args()
   return args
 
+
+def test_case(structure):
+  arbitrary_data = [1,2,3,4,5,6,7,8,9]
+  for i in arbitrary_data:
+    structure.add_node(i)
+    print("adding: {}".format(i))
+  size = structure.get_size()
+  for i in range(size):
+    print(structure.at_pos(i))
+
+
 if __name__ == '__main__':
   args = retrieve_args()
   if args.link_list is True:
     print("Worked")
     listing = sll.SingleLinkedList()
-    listing.add_node(5)
-    test = listing.ret_hdata()
-    print(test)
+    test_case(listing)
