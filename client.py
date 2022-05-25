@@ -20,6 +20,10 @@ def test_case(structure):
   size = structure.get_size()
   for i in range(size):
     print(structure.at_pos(i))
+  print("This is the information at position 5: {}".format(structure.at_pos(5)))
+  structure.remove_at_position(5)
+  for i in range(structure.get_size()):
+    print(structure.at_pos(i))
 
 
 if __name__ == '__main__':

@@ -34,8 +34,15 @@ class SingleLinkedList:
     traverse = self.head
     for i in range(index):
       traverse = traverse.get_next()
-    # pprint(dir(traverse))
     return traverse.get_data()
 
   def ret_hdata(self):
     return self.head.d
+
+  def remove_at_position(self, index):
+    traverse = self.head
+    for i in range(index):
+      traverse = traverse.get_next()
+    traverse.get_next().set_prev(traverse.get_prev())
+    traverse.get_prev().set_next(traverse.get_next())
+    self.num -= 1
