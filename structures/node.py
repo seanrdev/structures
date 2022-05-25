@@ -1,9 +1,10 @@
 class Node:
   """A Single Node To Hold Data"""
-  def __init__(self, data=None):
+  def __init__(self, data=None, sentinel=False):
     self.d = data
     self.next = None
     self.prev = None
+    self.sentinel = sentinel
 
   def set_data(self, data):
     self.d = data
@@ -27,3 +28,6 @@ class Node:
     if self.d is None:
       return True
     return False
+
+  def is_sentinel(self):
+    return self.sentinel

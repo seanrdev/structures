@@ -6,32 +6,25 @@ import pdb
 class SingleLinkedList:
   """A single direction linked list"""
   def __init__(self):
-    self.head = node.Node()
-    self.tail = node.Node()
+    self.head = node.Node(sentinel=True)
+    self.tail = node.Node(sentinel=True)
     self.head.set_next(self.tail)
     self.tail.set_prev(self.head)
     self.num = 0
 
   def add_node(self, data):
-    if self.head.d == None:
-      self.head.set_data(data)
-      self.num += 1
-    elif self.tail.d == None:
-      self.tail.set_data(data)
-      self.num += 1
-    else:
-      temp = self.tail
-      self.tail = node.Node(data)
-      self.tail.set_prev(temp)
-      self.tail.set_next(None)
-      temp.set_next(self.tail)
-      self.num += 1
+    tempnode = node.Node(data)
+    tempnode.set_next(self.tail)
+    tempnode.set_prev(self.tail.get_prev())
+    self.tail.get_prev().set_next(tempnode)
+    self.tail.set_prev(tempnode)
+    self.num += 1
 
   def get_size(self):
     return self.num
 
   def at_pos(self, index):
-    traverse = self.head
+    traverse = self.head.get_next()
     for i in range(index):
       traverse = traverse.get_next()
     return traverse.get_data()
