@@ -1,7 +1,8 @@
-#!/use/bin/env python3
+#!/usr/bin/env python3
 import argparse
 import structures.singlelinkedlist as sll
 import structures.node
+import tester as test
 
 def retrieve_args():
   llhelp = "Implement a single direction linked list"
@@ -12,23 +13,9 @@ def retrieve_args():
   return args
 
 
-def test_case(structure):
-  arbitrary_data = [1,2,3,4,5,6,7,8,9]
-  for i in arbitrary_data:
-    structure.add_node(i)
-    print("adding: {}".format(i))
-  size = structure.get_size()
-  for i in range(size):
-    print(structure.at_pos(i))
-  print("This is the information at position 5: {}".format(structure.at_pos(5)))
-  structure.remove_at_position(5)
-  for i in range(structure.get_size()):
-    print(structure.at_pos(i))
-
-
 if __name__ == '__main__':
   args = retrieve_args()
   if args.link_list is True:
-    print("Worked")
     listing = sll.SingleLinkedList()
-    test_case(listing)
+    testcase = test.Tester()
+    testcase.run(listing)

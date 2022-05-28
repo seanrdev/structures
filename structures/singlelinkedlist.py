@@ -39,3 +39,50 @@ class SingleLinkedList:
     traverse.get_next().set_prev(traverse.get_prev())
     traverse.get_prev().set_next(traverse.get_next())
     self.num -= 1
+
+  def contains(self, value):
+    traverse = self.head
+    for i in range(self.num):
+      traverse = traverse.get_next()
+      if traverse.get_data() == value:
+        return True
+    return False
+
+  def build_list(self):
+    traverse = self.head
+    ret_list = []
+    for i in range(self.num):
+      traverse = traverse.get_next()
+      ret_list.append(traverse.get_data())
+    return ret_list
+
+  def replace_at_pos(self, pos, value):
+    traverse = self.head
+    for i in range(pos):
+      traverse = traverse.get_next()
+    traverse.set_data(value)
+
+  def replace_vals(self, value, nvalue):
+    traverse = self.head
+    for i in range(self.num):
+      traverse = traverse.get_next()
+      if traverse.get_data() == value:
+        traverse.set_data(nvalue)
+
+  def add_list(self, lst):
+    for i in range(len(lst)):
+      tempnode = node.Node(lst[i])
+      tempnode.set_next(self.tail)
+      tempnode.set_prev(self.tail.get_prev())
+      self.tail.get_prev().set_next(tempnode)
+      self.tail.set_prev(tempnode)
+      self.num += 1
+
+  def print_list(self):
+    traverse = self.head
+    for i in range(self.num):
+      traverse = traverse.get_next()
+      print(traverse.get_data())
+
+  def indentify(self):
+    return "linkedlist"
